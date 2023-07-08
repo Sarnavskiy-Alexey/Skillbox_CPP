@@ -4,13 +4,13 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "C:\\Program Files (x86)\\mingw64\\bin\\g++.exe",
+            "command": "g++",
             "args": [
                 "-std=c++20",
-                "-O2",
+                "-O3",
                 "-Wall",
                 "-g",
-                "*.cpp",
+                "main.cpp",
                 "${fileDirname}\\Module_02\\*.cpp",
                 "${fileDirname}\\Module_03\\*.cpp",
                 "${fileDirname}\\Module_04\\*.cpp",
@@ -20,6 +20,7 @@
                 "${fileDirname}\\Module_08\\*.cpp",
                 "${fileDirname}\\Module_09\\*.cpp",
                 "${fileDirname}\\Module_10\\*.cpp",
+                "${fileDirname}\\Module_11\\*.cpp",
                 "-o",
                 "${fileDirname}\\SkillBox_HomeWorks.exe"
             ],

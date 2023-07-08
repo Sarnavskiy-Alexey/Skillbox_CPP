@@ -12,10 +12,11 @@ extern void Module_07();
 extern void Module_08();
 extern void Module_09();
 extern void Module_10();
+extern void Module_11();
 /* ********************************************************************************************* */
 
 int main() {
-    // setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "Russian");
 
     unsigned short userAnswer;
 
@@ -34,6 +35,7 @@ int main() {
             case 8: Module_08(); break;
             case 9: Module_09(); break;
             case 10: Module_10(); break;
+            case 11: Module_11(); break;
             default: {
                 std::cout << "ДЗ по модулю отсутствует или не выполнено. Выберите другой модуль!\n";
             }
