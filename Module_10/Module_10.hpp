@@ -1,3 +1,4 @@
+#ifdef __MODULE_10__
 #pragma once
 
 const std::string string_tasks[] = {
@@ -7,3 +8,4 @@ const std::string string_tasks[] = {
 extern const std::string equals;
 
 void Task_10_1();
+#endif

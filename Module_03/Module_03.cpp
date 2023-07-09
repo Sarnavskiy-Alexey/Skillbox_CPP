@@ -1,3 +1,4 @@
+#ifdef __MODULE_03__
 #include <iostream>
 #include "Module_03.hpp"
 
@@ -23,3 +24,4 @@ void Module_03()
         
     } while (userAnswer != 0);
 }
+#endif

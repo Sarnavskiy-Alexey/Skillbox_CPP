@@ -1,3 +1,4 @@
+#ifdef __MODULE_02__
 #pragma once
 
 const std::string string_tasks[] = {
@@ -13,3 +14,4 @@ void Task_02_1();
 void Task_02_2();
 void Task_02_3();
 void Task_02_4();
+#endif
