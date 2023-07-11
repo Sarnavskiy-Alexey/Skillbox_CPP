@@ -36,6 +36,9 @@ extern void Module_11();
 #ifdef __MODULE_12__
 extern void Module_12();
 #endif
+#ifdef __MODULE_13__
+extern void Module_13();
+#endif
 
 /* ********************************************************************************************* */
 
@@ -82,6 +85,9 @@ int main() {
             #endif
             #ifdef __MODULE_12__
             case 12: Module_12(); break;
+            #endif
+            #ifdef __MODULE_13__
+            case 12: Module_13(); break;
             #endif
             default: {
                 std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"

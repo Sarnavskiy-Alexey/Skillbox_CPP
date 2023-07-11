@@ -51,10 +51,10 @@ static bool check_second_part_email(std::string sp_email) {
 }
 
 static bool check_email(std::string email) {
-    if (email.find('@') < email.length()) {
+    if (email.find('@') < email.length())
         return check_first_part_email(email.substr(0, email.find('@'))) &&
-               check_second_part_email(email.substr(0, email.find('@')));
-    } else
+               check_second_part_email(email.substr(email.find('@') + 1));
+    else
         return false;
 }
 
