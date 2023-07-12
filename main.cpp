@@ -87,7 +87,7 @@ int main() {
             case 12: Module_12(); break;
             #endif
             #ifdef __MODULE_13__
-            case 12: Module_13(); break;
+            case 13: Module_13(); break;
             #endif
             default: {
                 std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"
