@@ -21,27 +21,34 @@
 #include <cassert>
 #include "Module_15.hpp"
 
+static unsigned int find_max_id(int five_nums[5]) {
+    unsigned int max_id = 0;
+    for (unsigned int i = 1; i < 5; i++) {
+        if (five_nums[i] > five_nums[max_id])
+            max_id = i;
+    }
+    return max_id;
+}
+
 // функция нахождения пятого по возрастанию числа
 static int find_5_asc_num(std::vector<int> vect) {
     assert(vect.size() >= 5);
 
-    for (unsigned int i = 0; (i < vect.size() - 1) && (i < 5); i++) {
-        int min_idx = i;
-        for (unsigned int j = i + 1; j < vect.size(); j++) {
-            if (vect[min_idx] > vect[j]) {
-                min_idx = j;
-            }
-        }
-        int tmp = vect[i];
-        vect[i] = vect[min_idx];
-        vect[min_idx] = tmp;
-
-        // в случае дохождения индекса i до пятого элемента, возвращаем его
-        if (i == 4)
-            return vect[4];
+    int five_nums[5] = { 0 };
+    // копируем первые пять чисел в новый массив и находим максимальное из них
+    for (int i = 0; i < 5; i++) {
+        five_nums[i] = vect[i];
     }
+    unsigned int max_id = find_max_id(five_nums);
 
-    return vect[4];
+    // заменяем максимальный из пяти элемент на элемент из вектора, меньший максимального
+    for (unsigned int i = 5; i < vect.size(); i++) {
+        if (five_nums[max_id] > vect[i]) {
+            five_nums[max_id] = vect[i];
+            max_id = find_max_id(five_nums);
+        }
+    }
+    return five_nums[max_id];
 }
 
 void Task_15_3() {
