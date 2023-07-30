@@ -15,11 +15,43 @@
  *  команды: buffer_stream >> a >> operation >> b; */
 
 #include <iostream>
+#include <sstream>
 #include "Module_16.hpp"
+
+enum class operations {
+    plus = '+',
+    minus = '-',
+    mult = '*',
+    div = '/'
+};
 
 void Task_16_3() {
     std::cout << equals << string_tasks[2] << equals;
 
+    std::string buffer;
+    std::cout << "Введите команду: ";
+    std::cin >> buffer;
 
+    std::stringstream buffer_stream(buffer);
+    long long number_1, number_2;
+    char op;
+    buffer_stream >> number_1 >> op >> number_2;
+
+    switch (op) {
+        case char(operations::plus):
+            std::cout << "Результат вычисления: " << number_1 + number_2;
+            break;
+        case char(operations::minus):
+            std::cout << "Результат вычисления: " << number_1 - number_2;
+            break;
+        case char(operations::mult):
+            std::cout << "Результат вычисления: " << number_1 * number_2;
+            break;
+        case char(operations::div):
+            std::cout << "Результат вычисления: " << number_1 / number_2;
+            break;
+        default: std::cout << "Неизвестная операция!";
+    }
+    std::cout << "\n";
 }
 #endif

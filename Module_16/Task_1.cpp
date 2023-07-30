@@ -27,11 +27,22 @@
  *  одним знаком после десятичной точки (%.1f).  */
 
 #include <iostream>
+#include <cstdio>
 #include "Module_16.hpp"
 
 void Task_16_1() {
     std::cout << equals << string_tasks[0] << equals;
 
+    float speed = 0.0f;
+    float add_speed;
+    char buffer[50];
 
+    do {
+        std::cout << "Разница в скоростях: ";
+        std::cin >> add_speed;
+        speed += add_speed;
+        std::sprintf(buffer, "Скорость: %.1f\n", speed);
+        std::cout << buffer;
+    } while (speed > 0.01);
 }
 #endif

@@ -41,9 +41,92 @@
 #include <iostream>
 #include "Module_16.hpp"
 
+// безопасный ввод ноты
+static int safe_enter(std::string invite_str, std::string error_str) {
+    int X;
+    do {
+        std::cout << invite_str;
+        std::cin >> X;
+        if (X < 0 || X > 127)
+            std::cout << error_str;
+    } while (X < 0 || X > 127);
+    
+    return X;
+}
+
+enum note { 
+    DO = 1, 
+    RE = 2, 
+    MI = 4, 
+    FA = 8, 
+    SOL = 16, 
+    LA = 32, 
+    SI = 64 
+};
+
+static void play_note(int note) {
+    int counter = 0;
+    if (note & DO) {
+        std::cout << "DO";
+        counter++;
+    }
+    if (note & RE) {
+        if (counter)
+            std::cout << "-";
+        std::cout << "RE";
+        counter++;
+    }
+    if (note & MI) {
+        if (counter)
+            std::cout << "-";
+        std::cout << "MI";
+        counter++;
+    }
+    if (note & FA) {
+        if (counter)
+            std::cout << "-";
+        std::cout << "FA";
+        counter++;
+    }
+    if (note & SOL) {
+        if (counter)
+            std::cout << "-";
+        std::cout << "SOL";
+        counter++;
+    }
+    if (note & LA) {
+        if (counter)
+            std::cout << "-";
+        std::cout << "LA";
+        counter++;
+    }
+    if (note & SI) {
+        if (counter)
+            std::cout << "-";
+        std::cout << "SI";
+        counter++;
+    }
+}
+
+static void play_melody(int melody[], const int size) {
+    for (int i = 0; i < size; i++) {
+        play_note(melody[i]);
+        std::cout << "\n";
+    }
+}
+
+static void enter_melody(int melody[], const int size) {
+    for (int i = 0; i < size; i++)
+        melody[i] = safe_enter("Введите звук в виде числа от 0 до 127: ",
+                               "ОШИБКА! Звук должен быть в пределах от 0 до 127!\n");
+}
+
 void Task_16_4() {
     std::cout << equals << string_tasks[3] << equals;
 
-
+    const int size = 12;
+    int melody[size];
+    enter_melody(melody, size);
+    play_melody(melody, size);
 }
 #endif
