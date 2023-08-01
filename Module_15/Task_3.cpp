@@ -21,53 +21,63 @@
 #include <cassert>
 #include "Module_15.hpp"
 
-static unsigned int find_max_id(int five_nums[5]) {
-    unsigned int max_id = 0;
-    for (unsigned int i = 1; i < 5; i++) {
-        if (five_nums[i] > five_nums[max_id])
-            max_id = i;
-    }
-    return max_id;
-}
+void add_new_element(std::vector<int>& vect, unsigned int& real_size, int new_el) {
+    assert(real_size <= 5);
 
-// функция нахождения пятого по возрастанию числа
-static int find_5_asc_num(std::vector<int> vect) {
-    assert(vect.size() >= 5);
+    // если реальное количество добавленных элементов не равно 5 - добавляем элемент на нужное место
+    if (real_size != 5) {
+        unsigned int idx = 0;
+        while (idx < real_size) {
+            if (vect[idx] > new_el) idx++;
+            else break;
+        }
 
-    int five_nums[5] = { 0 };
-    // копируем первые пять чисел в новый массив и находим максимальное из них
-    for (int i = 0; i < 5; i++) {
-        five_nums[i] = vect[i];
-    }
-    unsigned int max_id = find_max_id(five_nums);
+        while (idx < real_size) {
+            int tmp = vect[idx];
+            vect[idx] = new_el;
+            new_el = tmp;
+            idx++;
+        }
+        vect[idx] = new_el;
 
-    // заменяем максимальный из пяти элемент на элемент из вектора, меньший максимального
-    for (unsigned int i = 5; i < vect.size(); i++) {
-        if (five_nums[max_id] > vect[i]) {
-            five_nums[max_id] = vect[i];
-            max_id = find_max_id(five_nums);
+        real_size++;
+    } else {
+    // иначе вместо нулевого элемента вставляем новое значение на нужное место, если новое меньше
+        int idx = 0;
+        if (vect[0] > new_el) {
+            vect[0] = new_el;
+            while ((idx < 4) && (vect[idx] < vect[idx + 1])) {
+                int tmp = vect[idx + 1];
+                vect[idx + 1] = vect[idx];
+                vect[idx] = tmp;
+                idx++;
+            }
         }
     }
-    return five_nums[max_id];
 }
 
 void Task_15_3() {
     std::cout << equals << string_tasks[2] << equals;
-
-    std::vector<int> vec;
+    
+    std::vector<int> vec(5);
+    unsigned int real_size = 0;
     int number;
     do {
         std::cout << "Введите число: ";
         std::cin >> number;
         switch (number) {
             case -1: {
-                if (vec.size() >= 5)
-                    std::cout << find_5_asc_num(vec) << "\n";
+                if (real_size == 5)
+                    std::cout << vec[4] << "\n";
                 break;
             }
             case -2: break;
-            default: vec.push_back(number);
+            default: add_new_element(vec, real_size, number);
         }
+        std::cout << "\n";
+        for (int el : vec)
+            std::cout << el << " ";
+        std::cout << "\n";
     } while (number != -2);
 }
 #endif
