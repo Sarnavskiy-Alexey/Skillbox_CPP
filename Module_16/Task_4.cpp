@@ -43,71 +43,92 @@
 
 // безопасный ввод ноты
 static int safe_enter(std::string invite_str, std::string error_str) {
-    int X;
+    int X, tmp;
+    bool right;
+
     do {
+        right = true;
         std::cout << invite_str;
         std::cin >> X;
-        if (X < 0 || X > 127)
+        
+        // если введенное число меньше нуля, то такого аккорда быть не может
+        if (X < 0) {
+            right = false;
             std::cout << error_str;
-    } while (X < 0 || X > 127);
+        } else {
+            // проверяем каждый разряд числа X
+            tmp = X;
+            while (tmp > 0) {
+                if (tmp % 10 > 7 || tmp % 10 == 0) {
+                    right = false;
+                    std::cout << error_str;
+                    break;
+                }
+                tmp /= 10;
+            }
+        }
+    } while (!right);
     
     return X;
 }
 
-enum note { 
-    DO = 1, 
-    RE = 2, 
-    MI = 4, 
-    FA = 8, 
-    SOL = 16, 
-    LA = 32, 
-    SI = 64 
+enum e_note {
+    DO = 1,
+    RE = 2,
+    MI = 4,
+    FA = 8,
+    SOL = 16,
+    LA = 32,
+    SI = 64
 };
 
-static void play_note(int note) {
-    int counter = 0;
-    if (note & DO) {
-        std::cout << "DO";
-        counter++;
+// функция сбора в один параметр аккорда
+static bool check_note(int note, e_note n, int& note_state) {
+    if (note & n) {
+        note_state |= n;
+        return true;
     }
-    if (note & RE) {
-        if (counter)
+    return false;
+}
+
+// функция для вывода на экран названия ноты в аккорде
+static void print_note(int note_state, e_note n, std::string note_str, int& counter) {
+    if (note_state & n) {
+        if (counter != 0)
             std::cout << "-";
-        std::cout << "RE";
-        counter++;
-    }
-    if (note & MI) {
-        if (counter)
-            std::cout << "-";
-        std::cout << "MI";
-        counter++;
-    }
-    if (note & FA) {
-        if (counter)
-            std::cout << "-";
-        std::cout << "FA";
-        counter++;
-    }
-    if (note & SOL) {
-        if (counter)
-            std::cout << "-";
-        std::cout << "SOL";
-        counter++;
-    }
-    if (note & LA) {
-        if (counter)
-            std::cout << "-";
-        std::cout << "LA";
-        counter++;
-    }
-    if (note & SI) {
-        if (counter)
-            std::cout << "-";
-        std::cout << "SI";
+        std::cout << note_str;
         counter++;
     }
 }
 
+// функция для проигрыша одного аккорда
+static void play_note(int note) {
+    int note_state = 0;
+    int tmp = note;
+    while (tmp != 0) {
+        int note_as_is = 1 << (tmp % 10 - 1);
+        if (check_note(note_as_is, DO, note_state));
+        else if (check_note(note_as_is, RE, note_state));
+        else if (check_note(note_as_is, MI, note_state));
+        else if (check_note(note_as_is, FA, note_state));
+        else if (check_note(note_as_is, SOL, note_state));
+        else if (check_note(note_as_is, LA, note_state));
+        else if (check_note(note_as_is, SI, note_state));
+
+        tmp /= 10;
+    }
+
+    int counter = 0;
+    print_note(note_state, DO, "DO", counter);
+    print_note(note_state, RE, "RE", counter);
+    print_note(note_state, MI, "MI", counter);
+    print_note(note_state, FA, "FA", counter);
+    print_note(note_state, SOL, "SOL", counter);
+    print_note(note_state, LA, "LA", counter);
+    print_note(note_state, SI, "SI", counter);
+}
+
+// функция для проигрыша всей мелодии
 static void play_melody(int melody[], const int size) {
     for (int i = 0; i < size; i++) {
         play_note(melody[i]);
@@ -115,10 +136,11 @@ static void play_melody(int melody[], const int size) {
     }
 }
 
+// функция для ввода мелодии
 static void enter_melody(int melody[], const int size) {
     for (int i = 0; i < size; i++)
-        melody[i] = safe_enter("Введите звук в виде числа от 0 до 127: ",
-                               "ОШИБКА! Звук должен быть в пределах от 0 до 127!\n");
+        melody[i] = safe_enter("Введите аккорд в виде числа с цифрами от 1 до 7: ",
+                         "ОШИБКА! Аккорд должен быть положительным и состоять из цифр от 1 до 7!\n");
 }
 
 void Task_16_4() {
