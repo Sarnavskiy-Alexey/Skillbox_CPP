@@ -1,4 +1,4 @@
-// #ifdef __MODULE_17__
+#ifdef __MODULE_17__
 /* Задача 1.
  *  Что нужно сделать:
  *  Написать функцию, принимающую два указателя на int и меняет местами содержимое данных указателей.
@@ -18,9 +18,23 @@
 #include <iostream>
 #include "Module_17.hpp"
 
+static void swap(int* const a, int* const b) {
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
 void Task_17_1() {
     std::cout << equals << string_tasks[0] << equals;
 
+    int a, b;
+    std::cout << "Введите два числа: ";
+    std::cin >> a >> b;
 
+    std::cout << "&a = " << &a << "\t&b = " << &b << "\n";
+    std::cout << "a = " << a << "\tb = " << b << "\n";
+    swap(&a, &b);
+    std::cout << "&a = " << &a << "\t&b = " << &b << "\n";
+    std::cout << "a = " << a << "\tb = " << b << "\n";
 }
-// #endif
+#endif
