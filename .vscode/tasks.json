@@ -27,6 +27,7 @@
                 // "-D __MODULE_17__",
                 // "-D __MODULE_18__",
                 "-D __MODULE_19__",
+                // "-D __MODULE_20__",
                 "main.cpp",
                 // "${fileDirname}\\Module_02\\*.cpp",
                 // "${fileDirname}\\Module_03\\*.cpp",
@@ -46,6 +47,7 @@
                 // "${fileDirname}\\Module_17\\*.cpp",
                 // "${fileDirname}\\Module_18\\*.cpp",
                 "${fileDirname}\\Module_19\\*.cpp",
+                // "${fileDirname}\\Module_20\\*.cpp",
                 "-o",
                 "${fileDirname}\\SkillBox_HomeWorks.exe"
             ],
