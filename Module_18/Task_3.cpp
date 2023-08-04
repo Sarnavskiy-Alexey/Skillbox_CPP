@@ -13,7 +13,7 @@
 #include <iostream>
 #include "Module_18.hpp"
 
-void evendigits(long long n, int& ans) {
+static void evendigits(long long n, int& ans) {
     static int level = 0;
     static int k = 0;
     if (n != 0) {
