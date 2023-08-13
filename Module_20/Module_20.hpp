@@ -1,4 +1,4 @@
-// #ifdef __MODULE_20__
+#ifdef __MODULE_20__
 #pragma once
 
 #include <string>
@@ -18,4 +18,4 @@ void Task_20_1();
 void Task_20_2();
 void Task_20_3();
 void Task_20_4();
-// #endif
+#endif
