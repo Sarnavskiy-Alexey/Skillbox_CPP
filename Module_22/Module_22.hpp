@@ -10,8 +10,6 @@ const std::string string_tasks[] = {
 };
 
 extern const std::string equals;
-const std::string CUR_DIR(__FILE__, strlen(__FILE__) - strlen("Module_22.hpp"));
-const std::string DOCS_DIR = "docs\\";
 
 void Task_22_1();
 void Task_22_2();
