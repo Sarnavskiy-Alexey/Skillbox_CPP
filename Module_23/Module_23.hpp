@@ -1,4 +1,4 @@
-// #ifdef __MODULE_23__
+#ifdef __MODULE_23__
 #pragma once
 
 #include <string>
@@ -13,4 +13,4 @@ extern const std::string equals;
 void Task_23_1();
 void Task_23_2();
 void Task_23_3();
-// #endif
+#endif
