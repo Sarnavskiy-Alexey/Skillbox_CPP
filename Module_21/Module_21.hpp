@@ -1,4 +1,4 @@
-// #ifdef __MODULE_21__
+#ifdef __MODULE_21__
 #pragma once
 
 #include <string>
@@ -18,4 +18,4 @@ void Task_21_1();
 void Task_21_2();
 void Task_21_3();
 void Task_21_4();
-// #endif
+#endif

@@ -58,6 +58,7 @@
         "variant": "cpp",
         "cstdarg": "cpp",
         "fstream": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "map": "cpp"
     }
 }
