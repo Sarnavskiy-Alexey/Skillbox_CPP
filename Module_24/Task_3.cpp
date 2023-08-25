@@ -1,4 +1,4 @@
-// #ifdef __MODULE_24__
+#ifdef __MODULE_24__
 /* Задание 3. Реализация программы таймера
  *  Что нужно сделать
  *  Реализуйте работу точного таймера с визуальной отдачей.
@@ -16,11 +16,34 @@
  *  его самостоятельно с помощью обращения с типом std::time_t как с секундами. */
 
 #include <iostream>
+#include <ctime>
+#include <iomanip>
 #include "Module_24.hpp"
 
 void Task_24_3() {
     std::cout << equals << string_tasks[2] << equals;
 
+    std::time_t timer = std::time(nullptr);
+    std::tm* p_timer = std::localtime(&timer);
+
+    std::cout << "Введите время для засекания в формате \"ММ:СС\": ";
+    std::cin >> std::get_time(p_timer, "%M:%S");
+    int minutes = p_timer->tm_min;
+    int seconds = p_timer->tm_sec;
+
+    std::time_t now = std::time(nullptr);
+
+    timer = now + minutes * 60 + seconds;
     
+    while (now < timer) {
+        now = std::time(nullptr);
+        std::cout << "До окончания таймера осталось: " << timer - now << " сек.\n";
+        _sleep(1000U);
+    }
+    for (int i = 0; i < 3; i++) {
+        std::cout << "\aDING! ";
+        _sleep(1000U);
+    }
+    std::cout << "\n";
 }
-// #endif
+#endif
