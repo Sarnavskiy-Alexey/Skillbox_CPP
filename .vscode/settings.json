@@ -60,5 +60,6 @@
         "fstream": "cpp",
         "cstring": "cpp",
         "map": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

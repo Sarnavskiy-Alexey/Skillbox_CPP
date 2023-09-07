@@ -3,9 +3,13 @@ CFLAGS = -g3 -Wall -c
 SRCDIR = ./
 SOURCES := $(wildcard $(SRCDIR)*.cpp)
 SOURCES += $(wildcard $(SRCDIR)*/*.cpp)
+SOURCES += $(wildcard $(SRCDIR)*/*/*.cpp)
+SOURCES += $(wildcard $(SRCDIR)*/*/*/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 HEADERS := $(wildcard $(SRCDIR)*.hpp)
 HEADERS += $(wildcard $(SRCDIR)*/*.hpp)
+HEADERS += $(wildcard $(SRCDIR)*/*/*.hpp)
+HEADERS += $(wildcard $(SRCDIR)*/*/*/*.hpp)
 EXECUTABLE = main
 XCFLAGS =  -D __MODULE_02__ 
 XCFLAGS += -D __MODULE_03__ 
@@ -30,6 +34,8 @@ XCFLAGS += -D __MODULE_21__
 XCFLAGS += -D __MODULE_22__ 
 XCFLAGS += -D __MODULE_23__ 
 XCFLAGS += -D __MODULE_24__ 
+XCFLAGS += -D __MODULE_25__ 
+XCFLAGS += -D __MODULE_26__ 
 
 all: $(SOURCES) $(EXECUTABLE)
 	del SkillBox_HomeWorks.exe
