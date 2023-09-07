@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Задание 3. Реализация программы управления окном рабочего стола
  *  Что нужно сделать
  *  Реализуйте симуляцию работы окна в визуальном интерфейсе пользователя.
@@ -19,11 +19,22 @@
  *  Сам экран монитора вы тоже можете реализовать с помощью класса. */
 
 #include <iostream>
+#include <limits>
 #include "../Module_26.hpp"
+#include "Monitor.hpp"
 
 void Task_26_3() {
     std::cout << equals << string_tasks[2] << equals;
 
+    // очистка буфера ввода
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+    Monitor monitor;
+    std::string command;
+    do {
+        std::cout << "Введите команду: ";
+        std::getline(std::cin, command);
+    } while(!monitor.cmd(command));
 }
-// #endif
+#endif

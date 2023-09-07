@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Определение класса Player */
 #include <iostream>
 #include <limits>
@@ -158,4 +158,4 @@ int MusicPlayer::search_track(std::string trackName) {
     return -1;
 }
 
-// #endif
+#endif

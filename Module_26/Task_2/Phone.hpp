@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Объявление класса Phone */
 #pragma once
 #include <string>
@@ -22,4 +22,4 @@ public:
     bool cmd(std::string command);
 };
 
-// #endif
+#endif

@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Определение класса Track */
 #include <iostream>
 #include "Track.hpp"
@@ -32,4 +32,4 @@ void Track::play_track() {
     std::cout << "  Длительность: " << this->m_duration_sec << " сек.\n";
 }
 
-// #endif
+#endif

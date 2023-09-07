@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Объявление класса Phone_Book */
 #pragma once
 #include <string>
@@ -18,4 +18,4 @@ public:
     std::string find_by_phone(Phone_Number phoneNumber);
 };
 
-// #endif
+#endif

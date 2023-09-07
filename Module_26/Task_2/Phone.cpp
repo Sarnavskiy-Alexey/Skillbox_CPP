@@ -1,4 +1,5 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
+/* Определение класса Phone */
 #include <iostream>
 #include <sstream>
 #include "Phone.hpp"
@@ -137,4 +138,4 @@ bool Phone::cmd(std::string command) {
 
     return false;
 }
-// #endif
+#endif

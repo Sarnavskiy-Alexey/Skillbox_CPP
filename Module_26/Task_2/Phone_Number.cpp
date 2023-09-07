@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Определение класса Phone_Number */
 
 #include <iostream>
@@ -20,4 +20,4 @@ unsigned int Phone_Number::get_city() const {
 unsigned int Phone_Number::get_number() const {
     return this->m_number;
 }
-// #endif
+#endif

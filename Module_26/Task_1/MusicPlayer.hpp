@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Объявление класса Player */
 #pragma once
 #include <vector>
@@ -29,4 +29,4 @@ public:
     void stop();
 };
 
-// #endif
+#endif

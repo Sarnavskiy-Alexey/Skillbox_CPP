@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Определение класса Phone_Book */
 
 #include <iostream>
@@ -45,4 +45,4 @@ std::string Phone_Book::find_by_phone(Phone_Number phoneNumber) {
     }
 }
 
-// #endif
+#endif

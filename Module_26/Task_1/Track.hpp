@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Объявление класса Track */
 #pragma once
 #include <string>
@@ -24,4 +24,4 @@ public:
     void play_track();
 };
 
-// #endif
+#endif

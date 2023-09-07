@@ -1,4 +1,4 @@
-// #ifdef __MODULE_26__
+#ifdef __MODULE_26__
 /* Объявление класса Phone_Number */
 #pragma once
 
@@ -21,4 +21,4 @@ public:
     };
 };
 
-// #endif
+#endif
