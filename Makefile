@@ -36,6 +36,7 @@ XCFLAGS += -D __MODULE_23__
 XCFLAGS += -D __MODULE_24__ 
 XCFLAGS += -D __MODULE_25__ 
 XCFLAGS += -D __MODULE_26__ 
+XCFLAGS += -D __MODULE_27__ 
 
 all: $(SOURCES) $(EXECUTABLE)
 	del SkillBox_HomeWorks.exe
