@@ -1,4 +1,4 @@
-// #ifdef __MODULE_27__
+#ifdef __MODULE_27__
 /* Объявление класса Branch */
 
 #include <string>
@@ -29,4 +29,4 @@ public:
     void print_tree() const;
 };
 
-// #endif
+#endif

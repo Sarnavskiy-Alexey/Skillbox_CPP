@@ -1,4 +1,4 @@
-// #ifdef __MODULE_27__
+#ifdef __MODULE_27__
 /* Определение класса Forest */
 
 #include <iostream>
@@ -89,4 +89,4 @@ void Forest::print_forest() const {
     }
 }
 
-// #endif
+#endif

@@ -1,4 +1,4 @@
-// #ifdef __MODULE_27__
+#ifdef __MODULE_27__
 /* Объявление класса Forest */
 
 #include "Branch.hpp"
@@ -17,4 +17,4 @@ public:
     void print_forest() const;
 };
 
-// #endif
+#endif

@@ -1,4 +1,4 @@
-// #ifdef __MODULE_27__
+#ifdef __MODULE_27__
 /* Определение класса Branch */
 
 #include <iostream>
@@ -100,4 +100,4 @@ void Branch::print_tree() const {
     }
     std::cout << ")\n";
 }
-// #endif
+#endif
