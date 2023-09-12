@@ -1,4 +1,4 @@
-// #ifdef __MODULE_27__
+#ifdef __MODULE_27__
 /* Задание 3. Симуляция работы компании
  *  Что нужно сделать
  *  Реализуйте симуляцию работы компании. В компании существует вертикальное управление с иерархией.
@@ -34,12 +34,20 @@
 #include <iostream>
 #include <limits>
 #include "../Module_27.hpp"
+#include "Director.hpp"
 
 void Task_27_3() {
     std::cout << equals << string_tasks[2] << equals;
 
-    // очистка буфера ввода
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    Director * director = new Director;
+    int quantity;
+
+    std::cout << "Введите количество команд: ";
+    std::cin >> quantity;
+    
+    director->set_teams(quantity);
+    director->set_tasks();
+    
+    delete director;
 }
-// #endif
+#endif
