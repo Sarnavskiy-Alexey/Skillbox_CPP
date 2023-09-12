@@ -1,6 +1,7 @@
 #ifdef __MODULE_27__
 /* Объявление класса Branch */
 
+#pragma once
 #include <string>
 
 class Branch {

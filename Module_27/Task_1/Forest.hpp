@@ -1,6 +1,7 @@
 #ifdef __MODULE_27__
 /* Объявление класса Forest */
 
+#pragma once
 #include "Branch.hpp"
 
 class Forest {
