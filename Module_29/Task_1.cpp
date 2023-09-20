@@ -1,4 +1,4 @@
-// #ifdef __MODULE_29__
+#ifdef __MODULE_29__
 /* Задача 1. Суперпёс
  *  Возьмём решение из видео. Все наши животные могут мяукать и гавкать, то есть издавать звуки в
  *  соответствии со своим классом. Но что, если нужно добавить им новое поведение, например, научить
@@ -41,11 +41,91 @@
  *    Animal была объявлена «чисто» виртуальной. Это поможет в выполнении задания. */
 
 #include <iostream>
+#include <vector>
+#include <set>
 #include "Module_29.hpp"
+
+class Talent {
+public:
+    Talent() {};
+    virtual void talent() = 0;
+};
+
+class Swim : public Talent {
+public:
+    Swim() {};
+    virtual void talent() {
+        std::cout << "It can \"Swim\"\n";
+    }
+};
+
+class Dance : public Talent {
+public:
+    Dance() {};
+    virtual void talent() {
+        std::cout << "It can \"Dance\"\n";
+    }
+};
+
+class Count : public Talent {
+public:
+    Count() {};
+    virtual void talent() {
+        std::cout << "It can \"Count\"\n";
+    }
+};
+
+class Dog {
+private:
+    enum class E_Talent {
+        Swim,
+        Dance,
+        Count
+    };
+    std::vector<Talent*> talents;
+    std::set<E_Talent> added_talents;
+public:
+    void show_talents() {
+        for (Talent*& talent : talents) {
+            talent->talent();
+        }
+    }
+    void add_swimming() {
+        Talent* s = new Swim();
+        if (added_talents.find(E_Talent::Swim) == added_talents.end()) {
+            talents.push_back(s);
+            added_talents.insert(E_Talent::Swim);
+        }
+    }
+    void add_dancing() {
+        Talent* d = new Dance();
+        if (added_talents.find(E_Talent::Dance) == added_talents.end()) {
+            talents.push_back(d);
+            added_talents.insert(E_Talent::Dance);
+        }
+    }
+    void add_counting() {
+        Talent* c = new Count();
+        if (added_talents.find(E_Talent::Count) == added_talents.end()) {
+            talents.push_back(c);
+            added_talents.insert(E_Talent::Count);
+        }
+    }
+};
 
 void Task_29_1() {
     std::cout << equals << string_tasks[0] << equals;
 
-
+    Dog dog;
+    std::cout << "    Добавлена одна способность\n";
+    dog.add_counting();
+    dog.show_talents();
+    std::cout << "    Добавлена уже имеющаяся способность\n";
+    dog.add_counting();
+    dog.show_talents();
+    std::cout << "    Добавлены оставшиеся две способности\n";
+    dog.add_dancing();
+    dog.add_swimming();
+    dog.show_talents();
 }
-// #endif
+#endif
