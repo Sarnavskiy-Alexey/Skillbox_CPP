@@ -59,7 +59,9 @@
         "cstdarg": "cpp",
         "fstream": "cpp",
         "cstring": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     },
     "cmake.configureOnOpen": true
 }

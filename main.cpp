@@ -89,6 +89,9 @@ int main() {
             #ifdef __MODULE_27__
             case 27: Module_27(); break;
             #endif
+            #ifdef __MODULE_28__
+            case 28: Module_28(); break;
+            #endif
             default: {
                 std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"
                           << ".\nВыберите другой модуль либо пересоберите проект!\n";

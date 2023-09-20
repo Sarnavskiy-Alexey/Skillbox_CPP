@@ -83,3 +83,6 @@ extern void Module_26();
 #ifdef __MODULE_27__
 extern void Module_27();
 #endif
+#ifdef __MODULE_28__
+extern void Module_28();
+#endif
