@@ -1,4 +1,4 @@
-// #ifdef __MODULE_29__
+#ifdef __MODULE_29__
 /* Задача 2. Интерфейс Shape (дополнительное задание)
  *  У вас есть набор классов различных геометрических фигур: круг(Circle), прямоугольник(Rectangle)
  *  и треугольник(Triangle), которые наследуются от общего класса геометрическая фигура (Shape).
@@ -47,11 +47,138 @@
  *  Height: 5 */
 
 #include <iostream>
+#include <cmath>
 #include "Module_29.hpp"
+
+struct BoundingBoxDimensions {
+    double width = 0.0;
+    double height = 0.0;
+};
+
+class Shape {
+public:
+    Shape() {};
+    virtual double square() = 0;
+    virtual BoundingBoxDimensions dimensions() = 0;
+    virtual std::string type() = 0;
+};
+
+class Circle : public Shape {
+private:
+    static inline const double PI = 3.14159265358979323846;
+    double r;
+public:
+    Circle(double _r) {
+        // если круг существует
+        if (_r > 0) {
+            r = _r;
+        } else {
+            std::cout << "Ошибка! Круг не существует!\n";
+        }
+    }
+
+    virtual double square() {
+        return PI * r * r;
+    }
+
+    virtual BoundingBoxDimensions dimensions() {
+        BoundingBoxDimensions result;
+        result.width = 2.0 * r;
+        result.height = 2.0 * r;
+        return result;
+    }
+
+    virtual std::string type() {
+        return "Circle";
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    double w;
+    double h;
+public:
+    Rectangle(double _w, double _h) {
+        // если прямоугольник существует
+        if (_w > 0 && _h > 0) {
+            w = _w;
+            h = _h;
+        } else {
+            std::cout << "Ошибка! Прямоугольник не существует!\n";
+        }
+    }
+
+    virtual double square() {
+        return w * h;
+    }
+
+    virtual BoundingBoxDimensions dimensions() {
+        BoundingBoxDimensions result;
+        result.width = w;
+        result.height = h;
+        return result;
+    }
+
+    virtual std::string type() {
+        return "Rectangle";
+    }
+};
+
+class Triangle : public Shape {
+private:
+    double a = 0.0;
+    double b = 0.0;
+    double c = 0.0;
+public:
+    // конструктор
+    Triangle(double _a, double _b, double _c) {
+        // если треугольник существует
+        if (_a > 0 && _b > 0 && _c > 0 && (_a + _b > _c) && (_b + _c > _a) && (_c + _a > _b)) {
+            a = _a;
+            b = _b;
+            c = _c;
+        } else {
+            std::cout << "Ошибка! Треугольник не существует!\n";
+        }
+    }
+
+    virtual double square() {
+        double pp = (a + b + c) / 2.0;
+        return std::sqrt(pp * (pp - a) * (pp - b) * (pp - c));
+    }
+
+    virtual BoundingBoxDimensions dimensions() {
+        BoundingBoxDimensions result;
+        if (a != 0) {
+            result.width = 2.0 * a * b * c / (4.0 * square());
+            result.height = 2.0 * a * b * c / (4.0 * square());
+        }
+        return result;
+    }
+
+    virtual std::string type() {
+        return "Triangle";
+    }
+};
+
+// отклонение от правил в виде модификатора static обосновано тем, что все домашние работы
+// реализуются в одном проекте, что означает, что интерфейсные функции могут повторяться
+static void printParams(Shape* shape) {
+    BoundingBoxDimensions bbd = shape->dimensions();
+    std::cout <<"Type: " << shape->type() << "\n";
+    std::cout << "Square: " << shape->square() << "\n";
+    std::cout << "Width: " << bbd.width << "\n";
+    std::cout << "Height: " << bbd.height << "\n";
+}
 
 void Task_29_2() {
     std::cout << equals << string_tasks[1] << equals;
 
-
+    Shape * c = new Circle(5);
+    printParams(c);
+    Shape * r = new Rectangle(4, 5);
+    printParams(r);
+    Shape * t = new Triangle(3, 4, 5);
+    printParams(t);
 }
-// #endif
+#endif

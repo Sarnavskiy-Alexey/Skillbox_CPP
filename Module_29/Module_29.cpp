@@ -1,4 +1,4 @@
-// #ifdef __MODULE_29__
+#ifdef __MODULE_29__
 #include <iostream>
 #include "Module_29.hpp"
 
@@ -22,4 +22,4 @@ void Module_29()
 
     } while (userAnswer != 0);
 }
-// #endif
+#endif
