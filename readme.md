@@ -10,5 +10,7 @@ Here are homeworks from Skillbox
 
 If CMake writes this message:
 > c:/program files (x86)/mingw64/x86_64-w64-mingw32/bin/ld.exe: cannot open output file Skillbox_HomeWorks.exe: permission denied
+
 Then open cmd and write this:
+
 > taskkill -im Skillbox_HomeWorks.exe -f
