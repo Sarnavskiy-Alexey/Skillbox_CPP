@@ -70,6 +70,8 @@ add_executable(
     Module_30/Task_1.cpp
 
     Module_30/Task_2.cpp
-)
+
+    Module_30/Task_3.cpp
+    )
 
 target_link_libraries(Skillbox_HomeWorks PRIVATE cpr::cpr)
