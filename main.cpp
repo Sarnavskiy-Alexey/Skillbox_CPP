@@ -80,9 +80,6 @@ int main() {
             #ifdef __MODULE_24__
             case 24: Module_24(); break;
             #endif
-            #ifdef __MODULE_25__
-            case 25: Module_25(); break;
-            #endif
             #ifdef __MODULE_26__
             case 26: Module_26(); break;
             #endif
@@ -94,9 +91,6 @@ int main() {
             #endif
             #ifdef __MODULE_29__
             case 29: Module_29(); break;
-            #endif
-            #ifdef __MODULE_30__
-            case 30: Module_30(); break;
             #endif
             default: {
                 std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"

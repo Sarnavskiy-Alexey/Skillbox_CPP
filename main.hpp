@@ -74,9 +74,6 @@ extern void Module_23();
 #ifdef __MODULE_24__
 extern void Module_24();
 #endif
-#ifdef __MODULE_25__
-extern void Module_25();
-#endif
 #ifdef __MODULE_26__
 extern void Module_26();
 #endif
@@ -88,7 +85,4 @@ extern void Module_28();
 #endif
 #ifdef __MODULE_29__
 extern void Module_29();
-#endif
-#ifdef __MODULE_30__
-extern void Module_30();
 #endif

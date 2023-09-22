@@ -25,29 +25,13 @@
 
 #define SIZE 3U
 
-enum class TrainState {
-    ON_THE_WAY,
-    WAITING,
-    ON_THE_STATION,
-    OUT_OF_THE_STATION
-};
-
-enum class StationState {
-    EMPTY,
-    TRAIN_DEPARTS,
-    FULL
-};
-
-static StationState trainStationBusy = StationState::EMPTY;
-static std::mutex trainStationBusy_mutex;
-static unsigned int departedTrains = 0;
-static std::mutex departedTrains_mutex;
-
 struct Train {
-    char name;
-    double time_to_station;
-    TrainState state;
+    std::string name = "A";
+    double time_to_station = 0.0;
 };
+
+static std::mutex trainStationBusy_mutex;
+static std::mutex cout_mutex;
 
 static double safe_enter(std::string invite_str, std::string error_str) {
     double X;
@@ -63,97 +47,46 @@ static double safe_enter(std::string invite_str, std::string error_str) {
 
 static void initialization(Train* trains) {
     for (unsigned int i = 0; i < SIZE; i++) {
-        trains[i].name = 'A' + i;
-        trains[i].time_to_station = safe_enter("Введите время поезда " + std::string(&trains[i].name) + " до станции в сек.: ",
+        trains[i].name[0] += i;
+        trains[i].time_to_station = safe_enter("Введите время поезда " + trains[i].name + " до станции в сек.: ",
                                                "Значение времени должно быть больше нуля!\n");
-        trains[i].state = TrainState::ON_THE_WAY;
     }
 }
 
 static void train_go(Train* train) {
+    std::string command;
     double seconds = 0.0;
-    bool end = false;
-    
-    // цикл ожидания прибытия поезда к станции
-    while (seconds < train->time_to_station) {
+
+    // ожидание прибытия
+    while (train->time_to_station > seconds) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         seconds += 1.0;
     }
     
-    // поезд подъехал к станции, переводим его в режим ожидания свободного пути
-    train->state = TrainState::WAITING;
+    // обработка события "прибытие на станцию"
+    if (!trainStationBusy_mutex.try_lock()) {
+        cout_mutex.lock();
+        std::cout << "Поезд " << train->name << " ожидает разрешения на въезд на станцию!\n";
+        cout_mutex.unlock();
+        while (!trainStationBusy_mutex.try_lock()) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+    }
+    cout_mutex.lock();
+    std::cout << "Поезд " << train->name << " на станции и ожидает отправки!\n";
     
-    end = false;
-    // цикл проверки свободного пути и перевод поезда в режим "на станции"
-    while (true) {
-        trainStationBusy_mutex.lock();
-        if (trainStationBusy == StationState::EMPTY) {
-            trainStationBusy = StationState::FULL;
-            train->state = TrainState::ON_THE_STATION;
-            std::cout << "Поезд " << train->name << " прибыл на станцию!\n";
-            end = true;
-        }
-        trainStationBusy_mutex.unlock();
-        if (end) {
-            break;
-        }
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-    }
-
-    end = false;
-    // цикл ожидания команды depart и отъезд со станции
-    while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        trainStationBusy_mutex.lock();
-        if (trainStationBusy == StationState::TRAIN_DEPARTS) {
-            end = true;
-            trainStationBusy = StationState::EMPTY;
-        }
-        trainStationBusy_mutex.unlock();
-        if (end) {
-            std::cout << "Поезд " << train->name << " отошел от станции!\n";
-            departedTrains_mutex.lock();
-            departedTrains++;
-            departedTrains_mutex.unlock();
-            break;
-        }
-    }
-}
-
-static void station_scheduler() {
-    bool end = false;           // признак окончания бесконечного цикла
-    bool need_command = false;  // признак необходимости ввода команды
-    std::string command;        // команда, вводимая пользователем
-    while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        end = false;
-        need_command = false;
-
-        // проверка того, что все поезда прошли через станцию и ушли с нее
-        departedTrains_mutex.lock();
-        if (departedTrains >= SIZE) {
-            end = true;
-        }
-        departedTrains_mutex.unlock();
-        if (end) {
-            break;
-        }
-
-        // узнаем необходимость запроса от пользователя команды
-        trainStationBusy_mutex.lock();
-        if (trainStationBusy == StationState::FULL) {
-            need_command = true;
-        }
-        trainStationBusy_mutex.unlock();
-        if (need_command) {
-            std::cin >> command;
-            if (command == "depart") {
-                trainStationBusy_mutex.lock();
-                trainStationBusy = StationState::TRAIN_DEPARTS;
-                trainStationBusy_mutex.unlock();
-            }
-        }
-    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    
+    // отправка поезда
+    std::cout << "Введите \"depart\" для освобождения станции!\n";
+    cout_mutex.unlock();
+    do {
+        std::cin >> command;
+    } while (command != "depart");
+    cout_mutex.lock();
+    std::cout << "Поезд " << train->name << " отправляется от станции!\n";
+    cout_mutex.unlock();
+    trainStationBusy_mutex.unlock();
 }
 
 void Task_28_2() {
@@ -161,20 +94,14 @@ void Task_28_2() {
 
     Train trains[SIZE];
     std::thread train_threads[SIZE];
-    std::thread station_thread;
 
     initialization(trains);
     for (unsigned int i = 0; i < SIZE; i++) {
         train_threads[i] = std::thread(train_go, &trains[i]);
     }
-    station_thread = std::thread(station_scheduler);
-
-    trainStationBusy = StationState::EMPTY;
-    departedTrains = 0;
 
     for (unsigned int i = 0; i < SIZE; i++) {
         train_threads[i].join();
     }
-    station_thread.join();
 }
 #endif
