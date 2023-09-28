@@ -1,4 +1,4 @@
-// #ifdef __MODULE_31__
+#ifdef __MODULE_31__
 /* Задание 2. Реализация умного указателя
  *  Что нужно сделать:
  *  1. Реализуйте умный указатель shared_ptr_toy с распределённым доступом и механикой подсчёта
@@ -73,8 +73,9 @@ public:
             } else {
                 (*masters)--;
             }
-            masters = new unsigned int(*spt.masters);
-            obj = new Toy(*spt.obj);
+            masters = spt.masters;
+            (*masters)++;
+            obj = spt.obj;
         }
         return *this;
     }
@@ -132,4 +133,4 @@ void Task_31_2() {
         toys.erase(toys.end() - 1);
     }
 }
-// #endif
+#endif
