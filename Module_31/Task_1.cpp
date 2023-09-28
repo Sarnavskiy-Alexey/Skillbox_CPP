@@ -36,6 +36,9 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <limits>
+#include <sstream>
+#include <vector>
 #include "Module_31.hpp"
 
 class Toy {
@@ -51,7 +54,7 @@ public:
 class Dog {
 private:
     std::shared_ptr<Toy> lovelyToy;
-    std::string name;
+    std::string name = "";
 public:
     Dog(std::string _name, std::shared_ptr<Toy>& toy) : name(_name), lovelyToy(toy) {};
     Dog(std::string _name) : name(_name) {};
@@ -84,24 +87,125 @@ public:
     }
 };
 
+static unsigned int safe_enter(std::string invite_str, std::string error_str) {
+    unsigned int X;
+    do {
+        std::cout << invite_str;
+        std::cin >> X;
+        if (X == 0)
+            std::cout << error_str;
+    } while (X == 0);
+    
+    return X;
+}
+
+static bool check_uint(std::string numStr) {
+    for (unsigned int i = 0; i < numStr.length(); i++) {
+        if (numStr[i] < '0' || numStr[i] > '9') {
+            return false;
+        }
+    }
+    return true;
+}
+
+static void help() {
+    std::cout << "  connect <игрушка> <собака>    - соединить номер игрушки (от 0) с номером собаки (от 0)\n";
+    std::cout << "  disconnect <игрушка> <собака> - разъединить номер игрушки (от 0) с номером собаки (от 0)\n";
+    std::cout << "  help                          - вывод данного сообщения\n";
+    std::cout << "  exit                          - выход из задания\n";
+    std::cout << "\n";
+}
+
+static bool check_to_discon_and_con(std::string command_part) {
+    std::string toyNum, dogNum, err;
+    std::stringstream buf(command_part);
+    buf >> toyNum >> dogNum >> err;
+
+    return (toyNum.length() && dogNum.length() && !err.length() &&
+            check_uint(toyNum) && check_uint(dogNum));
+}
+
 void Task_31_1() {
     std::cout << equals << string_tasks[0] << equals;
+
+    unsigned int dogCount, toyCount;
+    std::vector<std::shared_ptr<Dog>> dogs;
+    std::vector<std::shared_ptr<Toy>> toys;
+    std::string userCommand, command;
+
+    dogCount = safe_enter("Введите количество собак: ",
+                          "Количество собак должно быть больше нуля!\n");
+    toyCount = safe_enter("Введите количество игрушек: ",
+                          "Количество игрушек должно быть больше нуля!\n");
     
-    std::shared_ptr<Toy> toy_ptr = std::make_shared<Toy>();
-    std::shared_ptr<Dog> da = std::make_shared<Dog>("Druzhok");
-    std::shared_ptr<Dog> db = std::make_shared<Dog>();
-    std::shared_ptr<Dog> dc = std::make_shared<Dog>();
+    for (unsigned int i = 0; i < dogCount; i++) {
+        std::string name;
+        std::cout << "Введите имя собаки №" << i << ": ";
+        std::cin >> name;
+        dogs.push_back(std::make_shared<Dog>(name));
+    }
+    for (unsigned int i = 0; i < toyCount; i++) {
+        std::string name;
+        std::cout << "Введите имя игрушки №" << i << ": ";
+        std::cin >> name;
+        toys.push_back(std::make_shared<Toy>(name));
+    }
 
-    da.get()->dropToy();
-    da.get()->getToy(toy_ptr);
-    da.get()->dropToy();
-    db.get()->getToy(toy_ptr);
+    // очистка буфера ввода
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    da.reset();
-    db.get()->getToy(toy_ptr);
+    do {
+        std::cout << "Введите команду (help - помощь): ";
+        std::getline(std::cin, userCommand);
+        std::stringstream command_buf(userCommand);
+        command_buf >> command;
 
-    db.reset();
-    dc.reset();
-    toy_ptr.reset();
+        if (command == "help") {
+            help();
+        } else if (command == "exit") {
+            std::cout << "Работа с заданием окончена!\n";
+            break;
+        } else if (command == "connect" && (userCommand.length() > command.length() + 1)) {
+            if (check_to_discon_and_con(command_buf.str().substr(command.length() + 1))) {
+                std::string toyNum_str, dogNum_str;
+                command_buf >> toyNum_str >> dogNum_str;
+                unsigned int toyNum = std::stoul(toyNum_str);
+                unsigned int dogNum = std::stoul(dogNum_str);
+
+                if (toyNum < toys.size() && dogNum < dogs.size()) {
+                    dogs[dogNum].get()->getToy(toys[toyNum]);
+                } else {
+                    std::cout << "Взятие этой игрушки этой собакой невозможно!\n";
+                }
+            } else {
+                std::cout << "Команда не распознана!\n";
+            }
+        } else if (command == "disconnect" && (userCommand.length() > command.length() + 1)) {
+            if (check_to_discon_and_con(command_buf.str().substr(command.length() + 1))) {
+                std::string toyNum_str, dogNum_str;
+                command_buf >> toyNum_str >> dogNum_str;
+                unsigned int toyNum = std::stoul(toyNum_str);
+                unsigned int dogNum = std::stoul(dogNum_str);
+
+                if (toyNum < toys.size() && dogNum < dogs.size()) {
+                    dogs[dogNum].get()->dropToy();
+                } else {
+                    std::cout << "Взятие этой игрушки этой собакой невозможно!\n";
+                }
+            } else {
+                std::cout << "Команда не распознана!\n";
+            }
+        } else {
+            std::cout << "Команда не распознана! Введите \"help\" для помощи.\n";
+        }
+    } while (userCommand != "exit");
+
+    for (unsigned int i = 0; i < dogs.size(); i++) {
+        dogs[i].reset();
+    }
+    for (unsigned int i = 0; i < toys.size(); i++) {
+        toys[i].reset();
+    }
 }
 // #endif

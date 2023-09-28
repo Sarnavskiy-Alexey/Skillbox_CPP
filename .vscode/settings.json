@@ -62,7 +62,11 @@
         "map": "cpp",
         "condition_variable": "cpp",
         "mutex": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "codecvt": "cpp",
+        "list": "cpp",
+        "set": "cpp",
+        "cinttypes": "cpp"
     },
     "cmake.configureOnOpen": true
 }
