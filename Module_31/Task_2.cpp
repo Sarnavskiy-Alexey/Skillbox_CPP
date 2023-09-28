@@ -73,8 +73,9 @@ public:
             } else {
                 (*masters)--;
             }
-            masters = new unsigned int(*spt.masters);
-            obj = new Toy(*spt.obj);
+            masters = spt.masters;
+            (*masters)++;
+            obj = spt.obj;
         }
         return *this;
     }
