@@ -61,13 +61,17 @@ public:
     shared_ptr_toy& operator= (const shared_ptr_toy& spt) {
         std::cout << "OBJ COPIED!\n";
         if (this != &spt) {
-            if (obj != nullptr) {
-                delete obj;
-                obj = nullptr;
-            }
-            if (masters != nullptr) {
-                delete masters;
-                masters = nullptr;
+            if (*masters == 1) {
+                if (obj != nullptr) {
+                    delete obj;
+                    obj = nullptr;
+                }
+                if (masters != nullptr) {
+                    delete masters;
+                    masters = nullptr;
+                }
+            } else {
+                (*masters)--;
             }
             masters = new unsigned int(*spt.masters);
             obj = new Toy(*spt.obj);
@@ -122,7 +126,6 @@ void Task_31_2() {
         std::cout << "Введите имя игрушки №" << i << ": ";
         std::cin >> name;
         toys[i] = make_shared_toy(name);
-        // toys.push_back(make_shared_toy(name));
     }
 
     while (toys.size() != 0) {
