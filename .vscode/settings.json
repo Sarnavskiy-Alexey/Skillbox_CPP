@@ -68,5 +68,6 @@
         "set": "cpp",
         "cinttypes": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "terminal.integrated.enableBell": true
 }
