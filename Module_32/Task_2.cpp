@@ -1,4 +1,4 @@
-#ifdef __MODULE_32__
+// #ifdef __MODULE_32__
 /* Задача 2. Анализ данных о фильмах
  *  Что нужно сделать:
  *  Используя модель данных из задачи №1, создайте JSON-документ, но теперь уже для пяти различных
@@ -69,19 +69,19 @@ static void cin_movie(Movie& movie, std::string& name) {
     }
 }
 
-void Task_32_2() {
-    std::cout << equals << string_tasks[1] << equals;
-
-    // очистка буфера ввода
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+static void make_movies_file() {
     nlohmann::json movies;
     nlohmann::json single;
     Movie movie;
     std::string movieName;
 
+    // // очистка буфера ввода
+    // std::cin.clear();
+    // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    
+    // для использования сначала очистить буфер ввода
     // cin_movie(movie, movieName);
+
     single = make_json(movie1);
     movies[movieName1] = single;
     single = make_json(movie2);
@@ -100,7 +100,40 @@ void Task_32_2() {
     } else {
         std::cout << "Some troubles with json file...\n";
     }
-
-    std::cout << "Watch the file \"movies.json\" =)\n";
 }
-#endif
+
+static void find_movies_by_actor(const nlohmann::json& movies, std::string actor) {
+    for (auto movie = movies.begin(); movie != movies.end(); movie++) {
+        for (auto role = (*movie)["actors"].begin(); role != (*movie)["actors"].end(); role++) {
+            std::string tmp = role.value();
+            if (actor == tmp) {
+                std::cout << "In movie " << movie.key() << " actor " << actor << " played ";
+                std::cout << role.key() << "\n";
+            }
+        }
+    }
+}
+
+void Task_32_2() {
+    std::cout << equals << string_tasks[1] << equals;
+
+    nlohmann::json movies;
+    make_movies_file();
+    std::ifstream file("movies.json");
+    if (file.is_open()) {
+        file >> movies;
+        file.close();
+
+        // очистка буфера ввода
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        
+        std::string actor;
+        std::cout << "Enter actor: ";
+        std::getline(std::cin, actor);
+        find_movies_by_actor(movies, actor);
+    } else {
+        std::cout << "Some troubles with json file...\n";
+    }
+}
+// #endif

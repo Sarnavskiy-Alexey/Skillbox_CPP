@@ -1,4 +1,4 @@
-#ifdef __MODULE_32__
+// #ifdef __MODULE_32__
 
 #pragma once
 #include <string>
@@ -152,4 +152,4 @@ const Movie movie5 = {
     }
 };
 
-#endif
+// #endif

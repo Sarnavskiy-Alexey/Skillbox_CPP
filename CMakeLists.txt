@@ -106,3 +106,21 @@ add_executable(
     )
 
 target_link_libraries(Skillbox_HomeWorks PRIVATE nlohmann_json::nlohmann_json)
+
+# # Для модулей с Qt
+# cmake_minimum_required(VERSION 3.17)
+# project("Skillbox Homework" VERSION 1.0)
+
+# set(CMAKE_CXX_STANDARD 14)
+# # Qt установлен на диск D
+# set(CMAKE_PREFIX_PATH "d:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake")
+
+# find_package(Qt5Widgets REQUIRED)
+
+# add_executable(
+#     Skillbox_HomeWorks
+    
+#     main.cpp
+#     main.hpp
+#     )
+# target_link_libraries(Skillbox_HomeWorks Qt5::Widgets)
