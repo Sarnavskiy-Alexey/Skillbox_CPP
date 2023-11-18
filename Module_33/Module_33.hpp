@@ -1,4 +1,4 @@
-// #ifdef __MODULE_33__
+#ifdef __MODULE_33__
 #pragma once
 
 #include <string>
@@ -15,4 +15,4 @@ void Task_33_1();
 void Task_33_2();
 void Task_33_3();
 void Task_33_4();
-// #endif
+#endif
