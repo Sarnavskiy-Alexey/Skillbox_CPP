@@ -4,6 +4,13 @@
 
 #include <exception>
 
+class ArticleIsInDatabaseException : std::exception {
+public:
+    const char * what() const noexcept override {
+        return "Артикул уже находится в базе данных!";
+    }
+};
+
 class AmountIsLessZeroException : std::exception {
 public:
     const char * what() const noexcept override {
@@ -18,6 +25,13 @@ public:
     }
 };
 
+class ArticleNotInBasketException : std::exception {
+public:
+    const char * what() const noexcept override {
+        return "Артикул не найден в корзине!";
+    }
+};
+
 class AmountIsMoreThanInDatabaseException : std::exception {
 public:
     const char * what() const noexcept override {
@@ -25,10 +39,17 @@ public:
     }
 };
 
-class AmountIsEqualOrLessToZeroException : std::exception {
+class AmountIsEqualToZeroException : std::exception {
 public:
     const char * what() const noexcept override {
         return "Количество товара в корзине должно быть больше нуля!";
+    }
+};
+
+class BasketIsNotInShopException : std::exception {
+public:
+    const char * what() const noexcept override {
+        return "Такой корзины в магазине еще нет!";
     }
 };
 
