@@ -111,7 +111,7 @@
 cmake_minimum_required(VERSION 3.21)
 project(Skillbox_HomeWorks)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -125,7 +125,20 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(Skillbox_HomeWorks main.cpp)
+add_compile_definitions(__MODULE_36__)
+# add_compile_definitions(__MODULE_37__)
+# add_compile_definitions(__MODULE_38__)
+# add_compile_definitions(__MODULE_39__)
+
+add_executable(Skillbox_HomeWorks
+        main.cpp
+        
+        Module_36/Module_36.cpp
+        Module_36/Task_1.cpp
+        Module_36/Task_2.cpp
+        Module_36/Task_3.cpp
+        Module_36/Task_4.cpp
+        )
 target_link_libraries(Skillbox_HomeWorks
         Qt5::Core
         Qt5::Gui

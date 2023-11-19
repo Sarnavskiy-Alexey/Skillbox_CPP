@@ -1,6 +1,6 @@
 #include "main.hpp"
 
-int main() {
+int main(int argc, char **argv) {
     setlocale(LC_ALL, "Russian");
 
     unsigned short userAnswer;
@@ -104,6 +104,9 @@ int main() {
             #ifdef __MODULE_35__
             case 35: Module_35(); break;
             #endif
+            #ifdef __MODULE_36__
+            case 36: Module_36_CW(argc, argv); break;
+            #endif
             default: {
                 std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"
                           << ".\nВыберите другой модуль либо пересоберите проект!\n";
@@ -114,15 +117,21 @@ int main() {
     return 0;
 }
 
+/*
 // Раскомментировать для модуля №34:
-// #include <iostream>
-// #include <QApplication>
-// #include <QPushButton>
+#include <iostream>
+#include <QApplication>
+#include <QPushButton>
 
-// int main(int argc, char *argv[]) {
-//     QApplication a(argc, argv);
-//     QPushButton button("Hello, world!", nullptr);
-//     button.resize(200, 100);
-//     button.show();
-//     return QApplication::exec();
-// }
+int main(int argc, char *argv[]) {
+    // QApplication a(argc, argv);
+    // QPushButton button("Hello, world!", nullptr);
+    // button.resize(200, 100);
+    // button.show();
+    // return QApplication::exec();
+}
+
+// какой-то важный файл, о котором не сказали на лекциях
+#include <main.moc>
+
+*/

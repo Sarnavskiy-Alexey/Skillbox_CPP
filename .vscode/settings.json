@@ -112,5 +112,9 @@
         "-D __MODULE_32__",
         "-D __MODULE_33__",
         "-D __MODULE_35__",
+        "-D __MODULE_36__",
+        "-D __MODULE_37__",
+        "-D __MODULE_38__",
+        "-D __MODULE_39__",
     ]
 }
