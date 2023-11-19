@@ -95,3 +95,6 @@ extern void Module_32();
 #ifdef __MODULE_33__
 extern void Module_33();
 #endif
+#ifdef __MODULE_35__
+extern void Module_35();
+#endif
