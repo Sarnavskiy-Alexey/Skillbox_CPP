@@ -13,11 +13,42 @@
  *  используйте новый формат цикла for и ключевое слово auto.  */
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
+#include <memory>
+#include <algorithm>
 #include "Module_35.hpp"
+
+static auto my_unique = [](std::vector<int>& V) {
+    std::unordered_set<int> us;
+    std::unordered_set<int> anti_us;
+    std::vector<int> res;
+
+    for (auto &n : V) {
+        if (us.count(n)) {
+            anti_us.insert(n);
+        }
+        us.insert(n);
+    }
+
+    for (auto &n: us) {
+        if (!anti_us.count(n)) {
+            res.push_back(n);
+        }
+    }
+
+    return std::make_unique<std::vector<int>>(res);
+};
 
 void Task_35_2() {
     std::cout << equals << string_tasks[1] << equals;
 
-    
+    std::vector<int> v = {1,2,3,4,4,6,6,6,7,8};
+    auto unique_numbers = my_unique(v);
+    for (auto it = unique_numbers->begin(); it != unique_numbers->end(); it++) {
+        std::cout << *it << " ";
+    }
+
+    std::cout << "\n";
 }
 #endif
