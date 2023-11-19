@@ -76,51 +76,79 @@
 
 # target_link_libraries(Skillbox_HomeWorks PRIVATE cpr::cpr)
 
-# Для модуля 32
-cmake_minimum_required(VERSION 3.17)
-project("Skillbox Homework" VERSION 1.0)
-
-set(CMAKE_CXX_STANDARD 20)
-
-set(JSON_BuildTests OFF CACHE INTERNAL "")
-
-add_subdirectory(nlohmann_json)
-
-add_compile_definitions(__MODULE_32__)
-
-add_executable(
-    Skillbox_HomeWorks
-    
-    main.cpp
-    main.hpp
-
-    Module_32/Module_32.cpp
-    Module_32/Module_32.hpp
-
-    Module_32/Task_1.cpp
-
-    Module_32/Task_2.cpp
-    Module_32/Task_2.hpp
-
-    Module_32/Task_3.cpp
-    )
-
-target_link_libraries(Skillbox_HomeWorks PRIVATE nlohmann_json::nlohmann_json)
-
-# # Для модулей с Qt
+# # Для модуля 32
 # cmake_minimum_required(VERSION 3.17)
 # project("Skillbox Homework" VERSION 1.0)
 
-# set(CMAKE_CXX_STANDARD 14)
-# # Qt установлен на диск D
-# set(CMAKE_PREFIX_PATH "d:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake")
+# set(CMAKE_CXX_STANDARD 20)
 
-# find_package(Qt5Widgets REQUIRED)
+# set(JSON_BuildTests OFF CACHE INTERNAL "")
+
+# add_subdirectory(nlohmann_json)
+
+# add_compile_definitions(__MODULE_32__)
 
 # add_executable(
 #     Skillbox_HomeWorks
     
 #     main.cpp
 #     main.hpp
+
+#     Module_32/Module_32.cpp
+#     Module_32/Module_32.hpp
+
+#     Module_32/Task_1.cpp
+
+#     Module_32/Task_2.cpp
+#     Module_32/Task_2.hpp
+
+#     Module_32/Task_3.cpp
 #     )
-# target_link_libraries(Skillbox_HomeWorks Qt5::Widgets)
+
+# target_link_libraries(Skillbox_HomeWorks PRIVATE nlohmann_json::nlohmann_json)
+
+# Для модулей с Qt
+cmake_minimum_required(VERSION 3.20)
+project(Skillbox_Homeworks)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+# Qt установлен на диск D
+set(CMAKE_PREFIX_PATH "d:/Qt/5.15.2/mingw81_64/lib/cmake")
+
+find_package(Qt5 COMPONENTS
+        Core
+        Gui
+        Widgets
+        REQUIRED)
+
+add_executable(Skillbox_HomeWorks
+        main.cpp
+        # main.hpp
+)
+target_link_libraries(Skillbox_HomeWorks
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets)
+
+if (WIN32)
+    set(QT_INSTALL_PATH "${CMAKE_PREFIX_PATH}/../..")
+    if (EXISTS "${QT_INSTALL_PATH}/plugins/platforms/qwindows.dll")
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E make_directory
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms")
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy
+                "${QT_INSTALL_PATH}/plugins/platforms/qweindows.dll"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms")
+    endif()
+    foreach(QT_LIB Core Gui Widgets)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy
+                "${QT_INSTALL_PATH}/bin/Qt5${QT_LIB}.dll"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
+    endforeach(QT_LIB)
+endif ()

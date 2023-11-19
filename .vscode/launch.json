@@ -23,8 +23,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: g++.exe build active file"
+            "preLaunchTask": "C/C++: g++.exe build active file",
+            "visualizerFile": "c:\\Users\\rider\\AppData\\Roaming\\Code\\User\\workspaceStorage\\1781eb93d50e723c8028e461f6983e4e\\tonka3000.qtvsctools\\qt.natvis.xml"
         }
-
     ]
 }
