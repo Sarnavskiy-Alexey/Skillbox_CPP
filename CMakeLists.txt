@@ -109,7 +109,7 @@
 
 # Для модулей с Qt
 cmake_minimum_required(VERSION 3.21)
-project(34_1)
+project(Skillbox_HomeWorks)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
@@ -124,8 +124,8 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(34_1 main.cpp)
-target_link_libraries(34_1
+add_executable(Skillbox_HomeWorks main.cpp)
+target_link_libraries(Skillbox_HomeWorks
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
