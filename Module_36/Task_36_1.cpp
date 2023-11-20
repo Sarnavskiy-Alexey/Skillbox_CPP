@@ -66,9 +66,9 @@ MyWidgetCircle::MyWidgetCircle(QWidget *parent) {
     setToolTip("Круг");
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    mGreenCircle = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36\\image\\green_button.png");
-    mYellowCircle = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36\\image\\yellow_button.png");
-    mRedCircle = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36\\image\\red_button.png");
+    mGreenCircle = QPixmap((CUR_DIR + IMAGE_DIR + "green_button.png").c_str());
+    mYellowCircle = QPixmap((CUR_DIR + IMAGE_DIR + "yellow_button.png").c_str());
+    mRedCircle = QPixmap((CUR_DIR + IMAGE_DIR + "red_button.png").c_str());
     
     mCurrentCircle = mGreenCircle;
     setGeometry(mCurrentCircle.rect());

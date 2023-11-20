@@ -15,6 +15,8 @@ const std::string string_tasks[] = {
 };
 
 extern const std::string equals;
+const std::string CUR_DIR(__FILE__, strlen(__FILE__) - strlen("Module_20.hpp"));
+const std::string IMAGE_DIR = "image\\";
 
 void Task_36_1(int argc, char **argv);
 #endif
