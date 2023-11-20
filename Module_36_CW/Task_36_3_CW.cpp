@@ -20,15 +20,14 @@ private:
     QPixmap mCurrentButtonPixmap;
     QPixmap mButtonDownPixmap;
     QPixmap mButtonUpPixmap;
-    bool isDown = false;
 };
 
 ImageButton::ImageButton(QWidget *parent) {
     setParent(parent);
     setToolTip("Стоп");
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    mButtonUpPixmap = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36\\image\\buttonUp.png");
-    mButtonDownPixmap = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36\\image\\buttonDown.png");
+    mButtonUpPixmap = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36_CW\\image\\buttonUp.png");
+    mButtonDownPixmap = QPixmap("D:\\Study\\skillbox\\Developer_CPP\\Module_36_CW\\image\\buttonDown.png");
     mCurrentButtonPixmap = mButtonUpPixmap;
     setGeometry(mCurrentButtonPixmap.rect());
     connect(this, &QPushButton::clicked, this, &ImageButton::setDown);
