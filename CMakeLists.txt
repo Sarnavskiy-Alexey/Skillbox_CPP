@@ -133,11 +133,8 @@ add_compile_definitions(__MODULE_36__)
 add_executable(Skillbox_HomeWorks
         main.cpp
         
-        Module_36_CW/Module_36_CW.cpp
-        Module_36_CW/Task_36_1_CW.cpp
-        Module_36_CW/Task_36_2_CW.cpp
-        Module_36_CW/Task_36_3_CW.cpp
-        Module_36_CW/Task_36_4_CW.cpp
+        Module_36/Module_36.cpp
+        Module_36/Task_36_1.cpp
         )
 target_link_libraries(Skillbox_HomeWorks
         Qt5::Core

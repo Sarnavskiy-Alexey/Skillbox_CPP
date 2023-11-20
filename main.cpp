@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
             case 35: Module_35(); break;
             #endif
             #ifdef __MODULE_36__
-            case 36: Module_36_CW(argc, argv); break;
+            case 36: Module_36(argc, argv); break;
             #endif
             default: {
                 std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"

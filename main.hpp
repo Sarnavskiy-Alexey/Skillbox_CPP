@@ -99,5 +99,5 @@ extern void Module_33();
 extern void Module_35();
 #endif
 #ifdef __MODULE_36__
-extern void Module_36_CW(int argc, char **argv);
+extern void Module_36(int argc, char **argv);
 #endif
