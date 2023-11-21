@@ -74,7 +74,8 @@
         "unordered_set": "cpp",
         "regex": "cpp",
         "ranges": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "qapplication": "cpp"
     },
     "cmake.configureOnOpen": true,
     "terminal.integrated.enableBell": true,
