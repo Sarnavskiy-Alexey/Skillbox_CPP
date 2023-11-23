@@ -101,3 +101,12 @@ extern void Module_35();
 #ifdef __MODULE_36__
 extern void Module_36(int argc, char **argv);
 #endif
+#ifdef __MODULE_37__
+extern void Module_37(int argc, char **argv);
+#endif
+#ifdef __MODULE_38__
+extern void Module_38_CW(int argc, char **argv);
+#endif
+#ifdef __MODULE_39__
+extern void Module_39_CW(int argc, char **argv);
+#endif

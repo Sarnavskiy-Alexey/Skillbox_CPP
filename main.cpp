@@ -6,11 +6,11 @@ int main(int argc, char **argv) {
     unsigned short userAnswer;
 
     do {
-        std::cout << "\tВведите номер модуля для проверки ДЗ (0 - выход): ";
+        std::wcout << L"\tВведите номер модуля для проверки ДЗ (0 - выход): ";
         std::cin >> userAnswer;
         std::cout << equals;
         switch(userAnswer) {
-            case 0: std::cout << "До свидания!\n"; break;
+            case 0: std::wcout << L"До свидания!\n"; break;
             #ifdef __MODULE_02__
             case 2: Module_02(); break;
             #endif
@@ -107,9 +107,18 @@ int main(int argc, char **argv) {
             #ifdef __MODULE_36__
             case 36: Module_36(argc, argv); break;
             #endif
+            #ifdef __MODULE_37__
+            case 37: Module_37(argc, argv); break;
+            #endif
+            #ifdef __MODULE_38__
+            case 38: Module_38_CW(argc, argv); break;
+            #endif
+            #ifdef __MODULE_39__
+            case 39: Module_39_CW(argc, argv); break;
+            #endif
             default: {
-                std::cout << "ДЗ по модулю отсутствует либо выставлены неправильные флаги компиляции"
-                          << ".\nВыберите другой модуль либо пересоберите проект!\n";
+                std::wcout << L"ДЗ по модулю отсутствует либо выставлены неправильные флаги "
+                           << "компиляции.\nВыберите другой модуль либо пересоберите проект!\n";
             }
         }
     } while (userAnswer != 0);

@@ -126,7 +126,7 @@ find_package(Qt5 COMPONENTS
         REQUIRED)
 
 add_compile_definitions(__MODULE_36__)
-# add_compile_definitions(__MODULE_37__)
+add_compile_definitions(__MODULE_37__)
 # add_compile_definitions(__MODULE_38__)
 # add_compile_definitions(__MODULE_39__)
 
@@ -135,6 +135,20 @@ add_executable(Skillbox_HomeWorks
         
         Module_36/Module_36.cpp
         Module_36/Task_36_1.cpp
+
+        # Module_37_CW/Module_37_CW.cpp
+        # Module_37_CW/Task_37_1_CW.cpp
+        # Module_37_CW/Task_37_2_CW.cpp
+        # Module_37_CW/callerMainWindow.hpp
+        # Module_37_CW/caller.ui
+
+        Module_37/Module_37.cpp
+        Module_37/Task_37_1.cpp
+        Module_37/calculator.ui
+        Module_37/Task_37_2.cpp
+        Module_37/Task_37_3.cpp
+        Module_37/calculatorMainWindow.cpp
+        # Module_37/calculatorMainWindow.hpp
         )
 target_link_libraries(Skillbox_HomeWorks
         Qt5::Core
