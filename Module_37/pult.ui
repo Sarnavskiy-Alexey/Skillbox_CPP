@@ -351,7 +351,7 @@
            </font>
           </property>
           <property name="text">
-           <string>ENTER</string>
+           <string>ENT</string>
           </property>
          </widget>
         </item>
@@ -381,7 +381,7 @@
            </font>
           </property>
           <property name="text">
-           <string>DELETE</string>
+           <string>DEL</string>
           </property>
          </widget>
         </item>
@@ -411,6 +411,11 @@
               <height>50</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="focusPolicy">
              <enum>Qt::NoFocus</enum>
             </property>
@@ -439,8 +444,13 @@
               <height>50</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>DOWN</string>
+             <string>DN</string>
             </property>
            </widget>
           </item>
@@ -468,8 +478,13 @@
               <height>50</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>LOUDER</string>
+             <string>LD</string>
             </property>
            </widget>
           </item>
@@ -493,8 +508,13 @@
               <height>50</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>QUIETER</string>
+             <string>QT</string>
             </property>
            </widget>
           </item>
@@ -517,6 +537,9 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QSpinBox" name="spinBox_ch">
           <property name="sizePolicy">
