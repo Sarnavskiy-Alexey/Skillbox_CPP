@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include "Module_37.hpp"
+#include "./ui_pult.h"
+#include "pultMainWindow.hpp"
 
 void Task_37_3(int argc, char **argv) {
     std::cout << equals;
@@ -18,6 +20,15 @@ void Task_37_3(int argc, char **argv) {
     std::cout << equals;
 
     QApplication app(argc, argv);
+
+    MyPult::PultMainWindow window(nullptr);
+    Ui::MainWindow_pult pult;
+    pult.setupUi(&window);
+
+    window.spinBox_ch = pult.spinBox_ch;
+    window.spinBox_volume = pult.spinBox_volume;
+
+    window.show();
 
     app.exec();
 }

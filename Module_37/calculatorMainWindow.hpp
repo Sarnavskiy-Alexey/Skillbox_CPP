@@ -23,6 +23,9 @@ namespace MyCalc {
 
     class CalculatorMainWindow : public QMainWindow {
         Q_OBJECT
+    private:
+        E_Calculator_Action check_action();
+        double make_action(double a, double b);
     public:
         CalculatorMainWindow(QWidget *parent = nullptr) : QMainWindow(parent) {}
         QLineEdit* lineEdit_num1 = nullptr;
@@ -34,7 +37,5 @@ namespace MyCalc {
         QRadioButton* radioButton_div = nullptr;
     public slots:
         void exec();
-        E_Calculator_Action check_action();
-        double make_action(double a, double b);
     };
 };

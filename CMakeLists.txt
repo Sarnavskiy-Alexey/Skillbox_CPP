@@ -145,13 +145,17 @@ add_executable(Skillbox_HomeWorks
         Module_37/calculatorMainWindow.hpp
         Module_37/Task_37_2.cpp
         Module_37/Task_37_3.cpp
-        )
+        Module_37/pult.ui
+        Module_37/pultMainWindow.cpp
+        Module_37/pultMainWindow.hpp
+)
+
 target_link_libraries(Skillbox_HomeWorks
         PRIVATE Qt5::Core
         Qt5::Gui
         Qt5::Widgets
         Qt5::Quick
-        )
+)
 
 if (WIN32)
     set(QT_INSTALL_PATH "${CMAKE_PREFIX_PATH}/../..")
