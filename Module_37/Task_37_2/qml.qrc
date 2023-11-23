@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>img/sample_640x360.avi</file>
+        <file>img/sample_960x400_ocean_with_audio.avi</file>
+    </qresource>
+</RCC>

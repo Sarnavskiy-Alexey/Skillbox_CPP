@@ -20,9 +20,9 @@ void Task_37_2(int argc, char **argv) {
     std::wcout << string_tasks[1];
     std::cout << equals;
 
-    QApplication app(argc, argv);
-
-    app.exec();
+    std::wcout << L"Запустить с помощью VS Code почему-то не удается =(\n";
+    std::wcout << L"Поэтому я сохранил файлы из проекта Qt Creator.\n";
+    std::wcout << L"См. исходные файлы в директории Module_37/Task_37_2/\n";
 }
 
 #include <Task_37_2.moc>
