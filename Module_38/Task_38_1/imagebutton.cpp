@@ -5,10 +5,9 @@ ImageButton::ImageButton(QWidget *parent) {
     setToolTip("Стоп");
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    mButtonUpPixmap = QPixmap("qrc:/image/redbutton.png");
+    mButtonUpPixmap = QPixmap("://image/redbutton.png");
     mButtonDownPixmap = QPixmap("://image/greenbutton.png");
     mClickSound.setMedia(QUrl("qrc:/audio/click.mp3"));
-//    mClickSound.setMedia(QUrl::fromLocalFile("D:/Study/skillbox/Developer_CPP/Module_38/Task_38_1/audio/click.mp3"));
 
     mCurrentButtonPixmap = mButtonUpPixmap;
     setGeometry(mCurrentButtonPixmap.rect());
