@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     QObject::connect(slider, &QSlider::valueChanged, [bluredImage, image, scene](const int value){
 
         QImage new_image = blurImage(*image, value);
-        QPixmap new_p = QPixmap::fromImage(new_image);
+        QPixmap new_p = QPixmap::fromImage(new_image).scaled(bluredImage->width(), bluredImage->height());;
         scene->addPixmap(new_p);
         scene->setSceneRect(new_p.rect());
         bluredImage->setScene(scene);
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
                                                 "D:/Study/skillbox/Developer_CPP/Module_38/Task_38_3/image/",
                                                 "images (*.jpg)");
         QPixmap p(filePath);
-        *image = p.toImage();
+        *image = p.toImage().scaled(bluredImage->width(), bluredImage->height());
         scene->clear();
         scene->addPixmap(p);
         scene->setSceneRect(p.rect());
